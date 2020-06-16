@@ -3,10 +3,10 @@ import {View, Text, StyleSheet} from 'react-native';
 import {getRandomAnagram} from '../utils/getRandomAnagram';
 
 export default function Content(){
-    console.log(getRandomAnagram);
+    const AnagramData = getRandomAnagram();
     return(
         <View style = {styles.container}>
-            <Text style = {styles.label}>{getRandomAnagram()}</Text>
+            <Text style = {styles.label}>{AnagramData.anagram}</Text>
         </View>
     )
 }

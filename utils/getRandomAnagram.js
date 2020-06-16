@@ -2,7 +2,7 @@ export function getRandomAnagram(){
     //console.log(RNFS);
     //Get random word from array with eniglish words
     let word = words.english[Math.trunc((Math.random()*100)%words.english.length)];
-    return makeAnagram(word);
+    return {word: word, anagram: makeAnagram(word)};
 }
 
 function makeAnagram(word){
