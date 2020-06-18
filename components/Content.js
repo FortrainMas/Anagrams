@@ -3,17 +3,35 @@ import {View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native'
 import {getRandomAnagram} from '../utils/getRandomAnagram';
 import {ContinueButton} from './ContinueButton'
 
-export default function Content(){
-    const AnagramData = getRandomAnagram();
-    return(
-        <View style = {styles.container}>
-            <Text style = {styles.label}>{AnagramData.anagram}</Text>
-            <View style = {styles.inpContainer}>
-                <TextInput style = {styles.input} placeholder="Type hear"></TextInput>
-                <ContinueButton />
+export default class Content extends React.Component{
+    constructor(){
+        super();
+        this.state = {
+            isGuessed: false,
+            AnagramData: getRandomAnagram()
+        }
+    }
+    
+    isGuessed = (txt) => {
+        txt = txt.nativeEvent.text.toLowerCase();
+        console.log(txt);
+        console.log(this.state.AnagramData.word.toLowerCase());
+        if(this.state.AnagramData.word.toLowerCase() == txt){
+            this.setState({isGuessed: true});
+            console.log("My congratulations")
+        }
+    }
+    render(){
+        return(
+            <View style = {styles.container}>
+                <Text style = {styles.label}>{this.state.AnagramData.anagram}</Text>
+                <View style = {styles.inpContainer}>
+                    <TextInput style = {styles.input} placeholder="Type hear" onChange = {this.isGuessed}></TextInput>
+                    <ContinueButton />
+                </View>
             </View>
-        </View>
-    )
+        )
+    }
 }
 const styles = StyleSheet.create({
     container:{
