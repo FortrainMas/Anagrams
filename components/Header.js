@@ -5,7 +5,6 @@ export default function Header(){
     return(
         <View style={styles.container}>
             <Text style = {styles.logo}>ANAGRAM</Text>
-            <Text style = {styles.LVL}>LVL 1</Text>
         </View>
     )
 }
@@ -18,7 +17,7 @@ const styles = StyleSheet.create({
         paddingTop: '13%',
         alignItems: 'center',
         flexDirection:'row',
-        justifyContent:'space-between'
+        justifyContent:'center'
     },
     logo:{
         color: '#fff',

@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 import {getRandomAnagram} from '../utils/getRandomAnagram';
-import {ContinueButton} from './ContinueButton'
+import {GameButton} from './GameButton'
 
 export default class Content extends React.Component{
     constructor(){
@@ -11,15 +11,19 @@ export default class Content extends React.Component{
             AnagramData: getRandomAnagram()
         }
     }
-    
+    //Check if word that you user input TextInput is similar with guessed word
     isGuessed = (txt) => {
         txt = txt.nativeEvent.text.toLowerCase();
-        console.log(txt);
-        console.log(this.state.AnagramData.word.toLowerCase());
         if(this.state.AnagramData.word.toLowerCase() == txt){
             this.setState({isGuessed: true});
-            console.log("My congratulations")
         }
+    }
+    //Reload game window after user press continue
+    reload = () => {
+        this.setState({
+            isGuessed: false,
+            AnagramData: getRandomAnagram()
+        })
     }
     render(){
         return(
@@ -27,7 +31,9 @@ export default class Content extends React.Component{
                 <Text style = {styles.label}>{this.state.AnagramData.anagram}</Text>
                 <View style = {styles.inpContainer}>
                     <TextInput style = {styles.input} placeholder="Type hear" onChange = {this.isGuessed}></TextInput>
-                    <ContinueButton />
+                    <GameButton onMenuPress = {this.props.onPress} 
+                                onContinuePress = {this.reload} 
+                                isGuessed = {this.state.isGuessed}/>
                 </View>
             </View>
         )
