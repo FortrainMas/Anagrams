@@ -3,7 +3,7 @@ import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 
 export function MenuButton({text, onPress}){
     function pressHandler(){
-        onPress(text.toLowerCase());
+        onPress();
     }
     return(
         <TouchableOpacity style = {styles.button} onPress={pressHandler}>

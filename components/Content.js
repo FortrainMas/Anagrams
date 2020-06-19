@@ -1,15 +1,19 @@
 import React from 'react';
 import {View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 import {getRandomAnagram} from '../utils/getRandomAnagram';
-import {GameButton} from './GameButton'
+import {MenuButton} from './MenuButton'
+import {setCurrentLanguage} from '../utils/LanguageWorker';
+import {getTypeHear, getMenu, getContinue} from '../utils/getPhrase';
 
 export default class Content extends React.Component{
     constructor(){
         super();
         this.state = {
             isGuessed: false,
-            AnagramData: getRandomAnagram()
+            AnagramData: getRandomAnagram(),
+            language: 'en'
         }
+        setCurrentLanguage(this);
     }
     //Check if word that you user input TextInput is similar with guessed word
     isGuessed = (txt) => {
@@ -24,16 +28,17 @@ export default class Content extends React.Component{
             isGuessed: false,
             AnagramData: getRandomAnagram()
         })
+        
     }
     render(){
+        const {language} = this.state;
         return(
             <View style = {styles.container}>
                 <Text style = {styles.label}>{this.state.AnagramData.anagram}</Text>
                 <View style = {styles.inpContainer}>
-                    <TextInput style = {styles.input} placeholder="Type hear" onChange = {this.isGuessed}></TextInput>
-                    <GameButton onMenuPress = {this.props.onPress} 
-                                onContinuePress = {this.reload} 
-                                isGuessed = {this.state.isGuessed}/>
+                    <TextInput style = {styles.input} placeholder={getTypeHear(language)} onChange = {this.isGuessed}></TextInput>
+                    <MenuButton onPress = {!this.state.isGuessed? this.props.onPress : this.reload} 
+                                text = {!this.state.isGuessed? getMenu(language):getContinue(language)}/>
                 </View>
             </View>
         )
@@ -55,7 +60,7 @@ const styles = StyleSheet.create({
         borderWidth: 0,
         borderRadius:2,
         marginTop:'10%',
-        width: '70%',
+        width: '90%',
         textAlign:'center',
         fontSize: 45,
         marginBottom: '10%'

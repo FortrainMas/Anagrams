@@ -10,7 +10,7 @@ export function GameButton({isGuessed, onMenuPress, onContinuePress}){
         )
     }
     return(
-        <TouchableOpacity style = {styles.button} onPress = {()=>{onMenuPress('menu')}}>
+        <TouchableOpacity style = {styles.button} onPress = {onMenuPress}>
             <Text style = {styles.buttonText}>MENU</Text>
         </TouchableOpacity>
     )

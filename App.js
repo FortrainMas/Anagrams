@@ -13,16 +13,19 @@ export default class App extends React.Component{
       window: "menu"
     }
   }
-  windowsChangeHandler = (window) =>{
-    this.setState({window: window});
+  menuLoader = () =>{
+    this.setState({window: 'menu'});
+  }
+  gameLoader = () =>{
+    this.setState({window: 'game'})
   }
   render(){
     return (
       <View style={styles.container}>
         <Header />
         {
-          this.state.window == "play"? <Content onPress = {this.windowsChangeHandler}/>:
-          this.state.window == "menu"? <Menu onPress = {this.windowsChangeHandler}/>:
+          this.state.window == "game"? <Content onPress = {this.menuLoader}/>:
+          this.state.window == "menu"? <Menu onPress = {this.gameLoader}/>:
           <Menu onPress = {this.windowsChangeHandler}/>
         }
       </View>
