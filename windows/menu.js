@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, BackHandler} from 'react-native';
 import {MenuButton} from '../components/MenuButton';
 import {getLanguage, getPlay, getExit} from '../utils/getPhrase';
 import {changeLanguage, setCurrentLanguage} from '../utils/LanguageWorker';
@@ -23,7 +23,7 @@ export class Menu extends React.Component{
             <View style = {styles.container}>
                 <MenuButton text = {getPlay(language)} onPress = {this.onPress}/>
                 <MenuButton text = {getLanguage(language)} onPress = {this.onChangeLanguage}/>
-                <MenuButton text = {getExit(language)} onPress = {this.onPress}/>
+                <MenuButton text = {getExit(language)} onPress = {BackHandler.exitApp}/>
             </View>
         )
     }

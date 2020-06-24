@@ -5,6 +5,7 @@ export function getLanguage(language){
         case "ru":
             return "ЯЗЫК";
     }
+    return "LANGUAGE";
 }
 
 export function getPlay(language){

@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     },
     logo:{
         color: '#fff',
-        fontSize: 30,
+        fontSize: 35,
     },
     LVL:{
         color: '#fff',

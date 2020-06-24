@@ -10,10 +10,19 @@ export default class Content extends React.Component{
         super();
         this.state = {
             isGuessed: false,
-            AnagramData: getRandomAnagram(),
+            AnagramData: {},
             language: 'en'
         }
         setCurrentLanguage(this);
+    }
+    componentDidMount(){
+        this.setAnagram();
+    }
+    //Set anagram on the first time
+    setAnagram = async ()=>{
+        this.setState({
+            AnagramData: await getRandomAnagram()
+        })
     }
     //Check if word that you user input TextInput is similar with guessed word
     isGuessed = (txt) => {
@@ -22,14 +31,18 @@ export default class Content extends React.Component{
             this.setState({isGuessed: true});
         }
     }
+
     //Reload game window after user press continue
-    reload = () => {
+    reload = async() => {
         this.setState({
             isGuessed: false,
-            AnagramData: getRandomAnagram()
+            AnagramData: await getRandomAnagram()
         })
         
     }
+
+    
+
     render(){
         const {language} = this.state;
         return(

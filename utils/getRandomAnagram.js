@@ -1,6 +1,16 @@
-export function getRandomAnagram(){
-    //Get random word from array with eniglish words
-    let word = words.english[Math.trunc((Math.random()*100)%words.english.length)];
+import {AsyncStorage} from 'react-native';
+export async function getRandomAnagram(){
+    let word = ''
+    switch(await AsyncStorage.getItem('language')){
+        case 'en':
+            word = words.english[Math.trunc((Math.random()*100)%words.english.length)];
+            break;
+        case 'ru':
+            word = words.russian[Math.trunc((Math.random()*100)%words.russian.length)];
+            break;
+        default:
+            console.error('Unknown value in storage on key language');
+    }
     let anagram = makeAnagram(word)
     return {word: word, anagram: anagram};
 }
@@ -30,7 +40,19 @@ const words = {
         'Лампа',
         'Удар',
         'Вера',
-        'Легитимность'
+        'Легитимность',
+        'Надежда',
+        'Рынок',
+        'Рост',
+        'Финансы',
+        'Аристократия',
+        'Поражение',
+        'Демократия',
+        'Школа',
+        'Экономика',
+        'Кризис',
+        'Пари',
+        'Казино',
     ],
     english:[
         'money',

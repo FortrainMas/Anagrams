@@ -15,5 +15,5 @@ export function changeLanguage(currentLanguage){
 }
 
 export async function setCurrentLanguage(context){
-    context.setState({language: await AsyncStorage.getItem('language')});
+    context.setState({language: (await AsyncStorage.getItem('language') || 'en')});
 }
